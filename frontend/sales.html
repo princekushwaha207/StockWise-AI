@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+        <div class="app-shell">
+
+            <aside class="app-sidebar">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-icon">S</div>
+                    <span>StockWise <span class="brand-highlight">AI</span></span>
+                </div>
+
+                <p class="sidebar-label">MAIN MENU</p>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-link"><span>▦</span> Dashboard</a>
+                    <a href="products.html" class="sidebar-link"><span>◈</span> Products</a>
+                    <a href="categories.html" class="sidebar-link"><span>▤</span> Categories</a>
+                    <a href="suppliers.html" class="sidebar-link"><span>♧</span> Suppliers</a>
+                    <a href="stock.html" class="sidebar-link"><span>▣</span> Stock Management</a>
+                    <a href="sales.html" class="sidebar-link active"><span>↗</span> Sales</a>
+                    <a href="ai.html" class="sidebar-link"><span>✧</span> AI Assistant</a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-status"></div>
+                    <span>System Operational</span>
+                </div>
+            </aside>
+
+            <main class="app-main">
+
+                <header class="app-topbar">
+                    <div>
+                        <p class="topbar-eyebrow">BUSINESS PERFORMANCE</p>
+                        <span id="welcomeUser" class="welcome-user">Welcome</span>
+                    </div>
+
+                    <div class="topbar-actions">
+                        <button id="logoutButton" class="logout-btn">Logout ↗</button>
+                    </div>
+                </header>
+
+                <div class="dashboard-content sales-page">
+
+                    <!-- PAGE INTRO -->
+                    <section class="sales-hero">
+                        <div class="sales-hero-content">
+                            <span class="sales-eyebrow">SALES & TRANSACTIONS</span>
+                            <h1>Sales Management</h1>
+                            <p>Record customer purchases, manage transactions and keep track of your shop's sales history.</p>
+                        </div>
+
+                        <div class="sales-hero-icon">↗</div>
+                    </section>
+
+                    <!-- RECORD SALE -->
+                    <section class="dashboard-section sales-form-card">
+
+                        <div class="sales-section-header">
+                            <div class="sales-title-group">
+                                <div class="sales-title-icon">＋</div>
+                                <div>
+                                    <h2>Record New Sale</h2>
+                                    <p>Add a new customer transaction to your sales records.</p>
+                                </div>
+                            </div>
+
+                            <span class="sales-section-tag">NEW TRANSACTION</span>
+                        </div>
+
+                        <form id="saleForm" class="sales-modern-form">
+
+                            <div class="sales-fields-grid">
+
+                                <div class="form-group">
+                                    <label for="saleProduct">Select Product <span>*</span></label>
+                                    <select id="saleProduct" required>
+                                        <option value="">Select Product</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="saleQuantity">Quantity <span>*</span></label>
+                                    <input
+                                        type="number"
+                                        id="saleQuantity"
+                                        min="1"
+                                        placeholder="Enter quantity"
+                                        required
+                                    >
+                                </div>
+
+                                <!-- CUSTOMER NAME - REQUIRED -->
+                                <div class="form-group">
+                                    <label for="customerName">
+                                        Customer Name <span>*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="customerName"
+                                        maxlength="100"
+                                        placeholder="Enter customer name"
+                                        autocomplete="name"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paymentMethod">Payment Method <span>*</span></label>
+                                    <select id="paymentMethod" required>
+                                        <option value="cash">Cash</option>
+                                        <option value="upi">UPI</option>
+                                        <option value="card">Card</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="sales-form-bottom">
+                                <p id="saleMessage" class="message sales-message"></p>
+
+                                <button type="submit" id="recordSaleButton">
+                                    + Record Sale
+                                </button>
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <!-- SALES HISTORY -->
+                    <section class="dashboard-section sales-history-card">
+
+                        <div class="sales-section-header">
+                            <div class="sales-title-group">
+                                <div class="sales-title-icon sales-history-icon">◷</div>
+                                <div>
+                                    <h2>Sales History</h2>
+                                    <p>Click any transaction to view complete purchase details.</p>
+                                </div>
+                            </div>
+
+                            <span class="sales-section-tag">TRANSACTION LOG</span>
+                        </div>
+
+                        <div class="sales-table-wrapper">
+                            <table class="sales-table">
+                                <thead>
+                                    <tr>
+                                        <th>INVOICE</th>
+                                        <th>CUSTOMER</th>
+                                        <th>DATE</th>
+                                        <th>ITEMS</th>
+                                        <th>TOTAL AMOUNT</th>
+                                        <th>PAYMENT</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="salesTableBody">
+                                    <tr>
+                                        <td colspan="7">Loading transactions...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        <span>© 2026 StockWise AI</span>
+                        <span>Smart Inventory Management System</span>
+                    </footer>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- TRANSACTION DETAILS MODAL -->
+    <div id="saleDetailsModal" class="sale-modal" hidden>
+        <div class="sale-modal-backdrop" id="saleModalBackdrop"></div>
+
+        <div class="sale-modal-card">
+
+            <div class="sale-modal-header">
+                <div>
+                    <span class="sales-eyebrow">TRANSACTION DETAILS</span>
+                    <h2>Purchase Summary</h2>
+                    <p>Complete customer purchase information</p>
+                </div>
+
+                <button type="button" id="closeSaleDetails" class="sale-modal-close" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <div id="saleDetailsContent" class="sale-details-content">
+                <!-- Details populated by sales.js -->
+            </div>
+
+            <div class="sale-modal-footer">
+                <span>StockWise AI · Transaction Record</span>
+                <button type="button" id="closeSaleDetailsBottom">Close</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/sales.js"></script>
+
+</body>
+</html>

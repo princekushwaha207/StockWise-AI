@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+        <div class="app-shell">
+
+            <aside class="app-sidebar">
+
+                <a href="index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">S</span>
+                    <span>StockWise <strong>AI</strong></span>
+                </a>
+
+                <div class="sidebar-label">WORKSPACE</div>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-link">
+                        <span>▦</span> Dashboard
+                    </a>
+
+                    <a href="products.html" class="sidebar-link active">
+                        <span>▤</span> Products
+                    </a>
+
+                    <a href="categories.html" class="sidebar-link">
+                        <span>◫</span> Categories
+                    </a>
+
+                    <a href="suppliers.html" class="sidebar-link">
+                        <span>♧</span> Suppliers
+                    </a>
+
+                    <a href="stock.html" class="sidebar-link">
+                        <span>⇅</span> Stock Management
+                    </a>
+
+                    <a href="sales.html" class="sidebar-link">
+                        <span>▧</span> Sales
+                    </a>
+                </nav>
+
+                <div class="sidebar-label">INTELLIGENCE</div>
+
+                <nav class="sidebar-nav">
+                    <a href="ai.html" class="sidebar-link">
+                        <span>✧</span> AI Assistant
+                    </a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-user-icon">SW</div>
+                    <div>
+                        <strong>StockWise AI</strong>
+                        <small>Inventory Workspace</small>
+                    </div>
+                </div>
+
+            </aside>
+
+            <div class="app-main">
+
+                <header class="app-topbar">
+                    <div>
+                        <span class="topbar-eyebrow">WORKSPACE / INVENTORY</span>
+                        <h2>Products</h2>
+                    </div>
+
+                    <div class="topbar-actions">
+                        <span id="welcomeUser" class="welcome-user">
+                            Welcome
+                        </span>
+
+                        <button id="logoutButton" class="logout-btn">
+                            Logout ↗
+                        </button>
+                    </div>
+                </header>
+
+                <main class="dashboard-content">
+
+                    <section class="dashboard-welcome">
+                        <div>
+                            <span class="welcome-tag">PRODUCT MANAGEMENT</span>
+                            <h1>Products Management</h1>
+                            <p>Manage products, suppliers, pricing and inventory.</p>
+                        </div>
+
+                        <div class="welcome-decoration">▤</div>
+                    </section>
+
+                    <!-- ADD PRODUCT -->
+                    <section class="dashboard-section products-form-section">
+
+                        <div class="section-heading">
+                            <div>
+                                <h2>Add New Product</h2>
+                                <p>Enter product details to add it to your inventory.</p>
+                            </div>
+
+                            <span class="section-indicator">+</span>
+                        </div>
+
+                        <form id="productForm" class="products-form-grid">
+
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input
+                                    type="text"
+                                    id="productName"
+                                    placeholder="Enter product name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productSKU">Product SKU</label>
+                                <input
+                                    type="text"
+                                    id="productSKU"
+                                    placeholder="Example: ELEC-001"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productSupplier">
+                                    Supplier <span>(Optional)</span>
+                                </label>
+
+                                <select id="productSupplier">
+                                    <option value="">No Supplier Assigned</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="purchasePrice">Purchase Price (₹)</label>
+                                <input
+                                    type="number"
+                                    id="purchasePrice"
+                                    placeholder="0.00"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sellingPrice">Selling Price (₹)</label>
+                                <input
+                                    type="number"
+                                    id="sellingPrice"
+                                    placeholder="0.00"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="quantity">Initial Quantity</label>
+                                <input
+                                    type="number"
+                                    id="quantity"
+                                    placeholder="Enter quantity"
+                                    min="0"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lowStockThreshold">Low Stock Threshold</label>
+                                <input
+                                    type="number"
+                                    id="lowStockThreshold"
+                                    min="0"
+                                    value="5"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reorderLeadTime">
+                                    Reorder Lead Time (Days)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="reorderLeadTime"
+                                    min="0"
+                                    value="3"
+                                    required
+                                >
+
+                                <small>Expected supplier delivery time.</small>
+                            </div>
+
+                            <!-- EXPIRY DATE -->
+                            <div class="form-group">
+                                <label for="expiryDate">
+                                    Expiry Date <span>(Optional)</span>
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="expiryDate"
+                                >
+
+                                <small>Set expiry date for perishable products.</small>
+                            </div>
+
+                            <div class="products-form-submit">
+                                <button
+                                    type="submit"
+                                    id="addProductButton"
+                                    class="profile-save-button"
+                                >
+                                    + Add Product
+                                </button>
+                            </div>
+
+                            <p id="productMessage" class="message"></p>
+
+                        </form>
+
+                    </section>
+
+                    <!-- ALL PRODUCTS -->
+                    <section class="dashboard-section products-table-section">
+
+                        <div class="section-heading">
+                            <div>
+                                <h2>All Products</h2>
+                                <p>View and manage your shop inventory.</p>
+                            </div>
+
+                            <span class="section-indicator">▤</span>
+                        </div>
+
+
+                        <!-- PRODUCT SEARCH AND FILTER -->
+                        <div class="products-toolbar">
+
+                            <div class="products-search">
+                                <span>⌕</span>
+                                <input
+                                    type="search"
+                                    id="productSearch"
+                                    placeholder="Search products by name or SKU..."
+                                >
+                            </div>
+
+                            <div class="products-filter">
+                                <select id="productCategoryFilter">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-wrapper products-table-wrapper">
+
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Supplier</th>
+                                        <th>Purchase Price</th>
+                                        <th>Selling Price</th>
+                                        <th>Quantity</th>
+                                        <th>Expiry Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="productsTableBody">
+                                    <tr>
+                                        <td colspan="8">Loading products...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        StockWise AI · Smart Inventory Management
+                    </footer>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+
+</body>
+</html>

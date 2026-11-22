@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+        <div class="app-shell">
+
+            <!-- SIDEBAR -->
+            <aside class="app-sidebar">
+
+                <a href="index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">S</span>
+                    <span>StockWise <strong>AI</strong></span>
+                </a>
+
+                <div class="sidebar-label">WORKSPACE</div>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-link active">
+                        <span>▦</span> Dashboard
+                    </a>
+
+                    <a href="products.html" class="sidebar-link">
+                        <span>▤</span> Products
+                    </a>
+
+                    <a href="categories.html" class="sidebar-link">
+                        <span>◫</span> Categories
+                    </a>
+
+                    <a href="suppliers.html" class="sidebar-link">
+                        <span>♧</span> Suppliers
+                    </a>
+
+                    <a href="stock.html" class="sidebar-link">
+                        <span>⇅</span> Stock Management
+                    </a>
+
+                    <a href="sales.html" class="sidebar-link">
+                        <span>▧</span> Sales
+                    </a>
+                </nav>
+
+                <div class="sidebar-label">INTELLIGENCE</div>
+
+                <nav class="sidebar-nav">
+                    <a href="ai.html" class="sidebar-link">
+                        <span>✧</span> AI Assistant
+                    </a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-user-icon">SW</div>
+                    <div>
+                        <strong>StockWise AI</strong>
+                        <small>Inventory Workspace</small>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- MAIN AREA -->
+            <div class="app-main">
+
+                <!-- TOPBAR -->
+                <header class="app-topbar">
+
+                    <div>
+                        <span class="topbar-eyebrow">OVERVIEW</span>
+                        <h2>Dashboard</h2>
+                    </div>
+
+                    <div class="topbar-actions">
+
+                        <button type="button" id="profileButton" class="profile-button">
+                            <span class="profile-avatar">👤</span>
+
+                            <span class="profile-button-text">
+                                <strong id="profileUserName">My Account</strong>
+                                <small>View Profile</small>
+                            </span>
+
+                            <span class="profile-arrow">⌄</span>
+                        </button>
+
+                        <span id="welcomeUser" class="welcome-user">
+                            Welcome
+                        </span>
+
+                        <button id="logoutButton" class="logout-btn">
+                            Logout ↗
+                        </button>
+
+                    </div>
+
+                </header>
+
+                <!-- DASHBOARD CONTENT -->
+                <main class="dashboard-content">
+
+                    <section class="dashboard-welcome">
+                        <div>
+                            <span class="welcome-tag">BUSINESS OVERVIEW</span>
+                            <h1>Welcome back!</h1>
+                            <p>Here's what's happening with your shop today.</p>
+                        </div>
+
+                        <div class="welcome-decoration">✧</div>
+                    </section>
+
+                    <!-- STATISTICS -->
+                    <section class="stats-grid">
+
+                        <div class="stat-card">
+                            <div class="stat-card-top">
+                                <span>Total Products</span>
+                                <span class="stat-icon purple">▤</span>
+                            </div>
+                            <h2 id="totalProducts">0</h2>
+                            <small>Products in your shop</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-top">
+                                <span>Total Stock</span>
+                                <span class="stat-icon blue">▦</span>
+                            </div>
+                            <h2 id="totalStock">0</h2>
+                            <small>Units currently available</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-top">
+                                <span>Total Sales</span>
+                                <span class="stat-icon green">↗</span>
+                            </div>
+                            <h2 id="totalSales">0</h2>
+                            <small>Recorded transactions</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-top">
+                                <span>Total Revenue</span>
+                                <span class="stat-icon orange">₹</span>
+                            </div>
+                            <h2 id="totalRevenue">₹0</h2>
+                            <small>Revenue from sales</small>
+                        </div>
+
+                    </section>
+
+                    <!-- ======================================
+                         DASHBOARD ANALYTICS
+                    ======================================= -->
+
+                    <section class="dashboard-analytics">
+
+                        <div class="analytics-heading">
+                            <div>
+                                <span class="welcome-tag">BUSINESS ANALYTICS</span>
+                                <h2>Performance Overview</h2>
+                                <p>Understand your shop's sales and inventory performance.</p>
+                            </div>
+                        </div>
+
+                        <!-- MONTHLY SALES CHART -->
+                        <div class="analytics-chart-card monthly-chart-card">
+
+                            <div class="analytics-card-heading">
+                                <div>
+                                    <h3>Monthly Sales & Revenue</h3>
+                                    <p>Revenue and orders over the last 6 months</p>
+                                </div>
+                                <span class="analytics-card-icon">↗</span>
+                            </div>
+
+                            <div class="analytics-chart-container monthly-chart-container">
+                                <canvas id="monthlySalesChart"></canvas>
+                            </div>
+
+                        </div>
+
+                        <!-- DAILY SALES + INVENTORY -->
+                        <div class="analytics-chart-grid">
+
+                            <div class="analytics-chart-card">
+
+                                <div class="analytics-card-heading">
+                                    <div>
+                                        <h3>Daily Sales Trend</h3>
+                                        <p>Sales performance over the last 7 days</p>
+                                    </div>
+                                    <span class="analytics-card-icon">⌁</span>
+                                </div>
+
+                                <div class="analytics-chart-container">
+                                    <canvas id="dailySalesChart"></canvas>
+                                </div>
+
+                            </div>
+
+                            <div class="analytics-chart-card">
+
+                                <div class="analytics-card-heading">
+                                    <div>
+                                        <h3>Inventory Overview</h3>
+                                        <p>Current product stock status</p>
+                                    </div>
+                                    <span class="analytics-card-icon">▦</span>
+                                </div>
+
+                                <div class="analytics-chart-container inventory-chart-container">
+                                    <canvas id="inventoryChart"></canvas>
+                                </div>
+
+                                <div id="inventoryChartLegend" class="inventory-chart-legend"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- ACTIVITY SECTIONS -->
+                    <section class="dashboard-panels">
+
+                        <div class="dashboard-section">
+
+                            <div class="section-heading">
+                                <div>
+                                    <h2>Low Stock Alerts</h2>
+                                    <p>Products that may need restocking</p>
+                                </div>
+                                <span class="section-indicator">!</span>
+                            </div>
+
+                            <div id="lowStockList">
+                                <p>Loading low stock information...</p>
+                            </div>
+
+                        </div>
+
+                        <div class="dashboard-section">
+
+                            <div class="section-heading">
+                                <div>
+                                    <h2>Recent Sales</h2>
+                                    <p>Your latest sales activity</p>
+                                </div>
+                                <span class="section-indicator">↗</span>
+                            </div>
+
+                            <div id="recentSalesList">
+                                <p>Loading recent sales...</p>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        StockWise AI · Smart Inventory Management
+                    </footer>
+
+                </main>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE MODAL -->
+    <div id="profileModal" class="profile-modal" hidden>
+
+        <div class="profile-modal-overlay" id="profileOverlay"></div>
+
+        <div class="profile-modal-card">
+
+            <div class="profile-modal-header">
+                <div>
+                    <span class="profile-modal-eyebrow">ACCOUNT SETTINGS</span>
+                    <h2>My Profile</h2>
+                    <p>Your personal and business information</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeProfileButton"
+                    class="profile-close-button"
+                >
+                    &times;
+                </button>
+            </div>
+
+            <!-- PROFILE SUMMARY -->
+            <div class="profile-main-info">
+
+                <div class="profile-large-avatar">👤</div>
+
+                <div>
+                    <h3 id="profileDisplayName">Loading...</h3>
+                    <p id="profileDisplayEmail">Loading...</p>
+                    <span id="profileRole">Owner</span>
+                </div>
+
+            </div>
+
+            <!-- VIEW MODE -->
+            <div class="profile-details" id="profileDetails">
+
+                <h3>Personal Information</h3>
+
+                <div class="profile-detail-grid">
+
+                    <div class="profile-detail-item">
+                        <span>Full Name</span>
+                        <strong id="profileNameValue">Loading...</strong>
+                    </div>
+
+                    <div class="profile-detail-item">
+                        <span>Email Address</span>
+                        <strong id="profileEmailValue">Loading...</strong>
+                    </div>
+
+                    <div class="profile-detail-item">
+                        <span>Date of Joining</span>
+                        <strong id="profileJoiningDate">Loading...</strong>
+                    </div>
+
+                    <div class="profile-detail-item">
+                        <span>Account Status</span>
+                        <strong id="profileAccountStatus">Loading...</strong>
+                    </div>
+
+                </div>
+
+                <h3 class="profile-shop-heading">Business Information</h3>
+
+                <div class="profile-detail-grid">
+
+                    <div class="profile-detail-item">
+                        <span>Shop Name</span>
+                        <strong id="profileShopName">Loading...</strong>
+                    </div>
+
+                    <div class="profile-detail-item">
+                        <span>Business Type</span>
+                        <strong id="profileBusinessType">Loading...</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EDIT MODE -->
+            <form id="editProfileForm" class="edit-profile-form" hidden>
+
+                <h3>Edit Personal Information</h3>
+
+                <div class="edit-profile-field">
+                    <label for="editProfileName">Full Name</label>
+                    <input
+                        type="text"
+                        id="editProfileName"
+                        placeholder="Enter your full name"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="edit-profile-field">
+                    <label for="editProfileEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="editProfileEmail"
+                        disabled
+                    >
+                    <small>Email address cannot be changed here.</small>
+                </div>
+
+                <h3 class="profile-shop-heading">Business Information</h3>
+
+                <div class="edit-profile-field">
+                    <label for="editShopName">Shop Name</label>
+                    <input
+                        type="text"
+                        id="editShopName"
+                        placeholder="Enter your shop name"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="edit-profile-field">
+                    <label for="editBusinessType">Business Type</label>
+
+                    <select id="editBusinessType" required>
+                        <option value="General Store">General Store</option>
+                        <option value="Grocery Store">Grocery Store</option>
+                        <option value="Electronics Store">Electronics Store</option>
+                        <option value="Clothing Store">Clothing Store</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="Wholesale">Wholesale</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="edit-profile-actions">
+
+                    <button
+                        type="button"
+                        id="cancelEditButton"
+                        class="profile-cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="saveProfileButton"
+                        class="profile-save-button"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div id="profileMessage" class="profile-message"></div>
+
+            <!-- FOOTER -->
+            <div class="profile-modal-footer" id="profileViewFooter">
+
+                <button
+                    type="button"
+                    id="editProfileButton"
+                    class="profile-done-button"
+                >
+                    Edit Profile
+                </button>
+
+                <button
+                    type="button"
+                    id="profileDoneButton"
+                    class="profile-done-button"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>

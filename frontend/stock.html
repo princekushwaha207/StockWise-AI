@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+        <div class="app-shell">
+
+            <aside class="app-sidebar">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-icon">S</div>
+                    <span>StockWise <span class="brand-highlight">AI</span></span>
+                </div>
+
+                <p class="sidebar-label">MAIN MENU</p>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-link"><span>▦</span> Dashboard</a>
+                    <a href="products.html" class="sidebar-link"><span>◈</span> Products</a>
+                    <a href="categories.html" class="sidebar-link"><span>▤</span> Categories</a>
+                    <a href="suppliers.html" class="sidebar-link"><span>♧</span> Suppliers</a>
+                    <a href="stock.html" class="sidebar-link active"><span>▣</span> Stock Management</a>
+                    <a href="sales.html" class="sidebar-link"><span>↗</span> Sales</a>
+                    <a href="ai.html" class="sidebar-link"><span>✧</span> AI Assistant</a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-status"></div>
+                    <span>System Operational</span>
+                </div>
+            </aside>
+
+            <main class="app-main">
+
+                <header class="app-topbar">
+                    <div>
+                        <p class="topbar-eyebrow">INVENTORY MANAGEMENT</p>
+                        <span id="welcomeUser" class="welcome-user">Welcome</span>
+                    </div>
+
+                    <div class="topbar-actions">
+                        <button id="logoutButton" class="logout-btn">Logout ↗</button>
+                    </div>
+                </header>
+
+                <div class="dashboard-content stock-page">
+
+                    <!-- PAGE INTRO -->
+                    <section class="stock-hero">
+                        <div class="stock-hero-content">
+                            <span class="stock-eyebrow">INVENTORY CONTROL</span>
+                            <h1>Stock Management</h1>
+                            <p>Track incoming and outgoing stock, update product quantities and monitor inventory movements.</p>
+                        </div>
+                        <div class="stock-hero-icon">▣</div>
+                    </section>
+
+                    <!-- STOCK SUMMARY -->
+                    <section class="stock-summary-grid">
+
+                        <div class="stock-summary-card">
+                            <div class="stock-summary-top">
+                                <span class="stock-summary-icon">▣</span>
+                                <span class="stock-summary-label">CURRENT INVENTORY</span>
+                            </div>
+                            <h2 id="totalStockUnits">—</h2>
+                            <p>Total Stock Units</p>
+                        </div>
+
+                        <div class="stock-summary-card stock-in-card">
+                            <div class="stock-summary-top">
+                                <span class="stock-summary-icon">↙</span>
+                                <span class="stock-summary-label">INVENTORY ADDED</span>
+                            </div>
+                            <h2 id="totalStockIn">—</h2>
+                            <p>Total Stock In</p>
+                        </div>
+
+                        <div class="stock-summary-card stock-out-card">
+                            <div class="stock-summary-top">
+                                <span class="stock-summary-icon">↗</span>
+                                <span class="stock-summary-label">INVENTORY REMOVED</span>
+                            </div>
+                            <h2 id="totalStockOut">—</h2>
+                            <p>Total Stock Out</p>
+                        </div>
+
+                    </section>
+
+                    <!-- UPDATE STOCK -->
+                    <section class="dashboard-section stock-update-card">
+
+                        <div class="stock-section-header">
+                            <div class="stock-title-group">
+                                <div class="stock-title-icon">↻</div>
+                                <div>
+                                    <h2>Update Stock</h2>
+                                    <p>Record a stock addition or deduction for a product.</p>
+                                </div>
+                            </div>
+                            <span class="stock-section-tag">STOCK ACTION</span>
+                        </div>
+
+                        <form id="stockForm" class="stock-modern-form">
+
+                            <div class="stock-fields-grid">
+
+                                <div class="form-group">
+                                    <label for="stockProduct">Select Product <span>*</span></label>
+                                    <select id="stockProduct" required>
+                                        <option value="">Select Product</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stockType">Stock Operation <span>*</span></label>
+                                    <select id="stockType" required>
+                                        <option value="in">Stock In (Add)</option>
+                                        <option value="out">Stock Out (Remove)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stockQuantity">Quantity <span>*</span></label>
+                                    <input type="number" id="stockQuantity" min="1" placeholder="Enter quantity" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stockNote">Reason / Note</label>
+                                    <input type="text" id="stockNote" placeholder="e.g. New purchase or damaged items">
+                                </div>
+
+                            </div>
+
+                            <div class="stock-form-bottom">
+                                <p id="stockMessage" class="message stock-message"></p>
+                                <button type="submit" id="updateStockButton">
+                                    ↻ Update Stock
+                                </button>
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <!-- STOCK HISTORY -->
+                    <section class="dashboard-section stock-history-card">
+
+                        <div class="stock-section-header">
+                            <div class="stock-title-group">
+                                <div class="stock-title-icon stock-history-icon">◷</div>
+                                <div>
+                                    <h2>Stock Movement History</h2>
+                                    <p>Review all recorded stock additions and deductions.</p>
+                                </div>
+                            </div>
+                            <span class="stock-section-tag">ACTIVITY LOG</span>
+                        </div>
+
+                        <div class="stock-table-wrapper">
+                            <table class="stock-table">
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCT</th>
+                                        <th>TYPE</th>
+                                        <th>QUANTITY</th>
+                                        <th>REASON</th>
+                                        <th>DATE</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="stockTableBody">
+                                    <tr>
+                                        <td colspan="5">Loading stock history...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        <span>© 2026 StockWise AI</span>
+                        <span>Smart Inventory Management System</span>
+                    </footer>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/stock.js"></script>
+
+</body>
+</html>

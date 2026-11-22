@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .register-brand-panel {
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(91,70,220,.22), transparent 50%),
+                linear-gradient(145deg, #101a35, #080d1a 75%);
+        }
+
+        .register-form-wrapper .form-group {
+            margin-bottom: 17px;
+        }
+
+        .register-form-wrapper .form-group input {
+            padding: 13px 15px;
+        }
+
+        .register-form-wrapper .login-heading {
+            margin-bottom: 25px;
+        }
+
+        .register-form-wrapper .login-security {
+            margin-top: 25px;
+        }
+
+        .register-feature-list {
+            margin-top: 30px;
+            display: grid;
+            gap: 17px;
+        }
+
+        .register-feature {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .register-feature-icon {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            background: rgba(139,114,255,.14);
+            color: #a695ff;
+            border-radius: 9px;
+        }
+
+        @media (max-width: 850px) {
+            .register-brand-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-dark">
+
+    <main class="login-layout">
+
+        <!-- LEFT BRANDING SECTION -->
+        <section class="login-brand-panel register-brand-panel">
+
+            <div class="login-brand">
+                <div class="brand-icon">S</div>
+                <span>StockWise <strong>AI</strong></span>
+            </div>
+
+            <div class="login-hero">
+
+                <span class="hero-tag">START YOUR JOURNEY</span>
+
+                <h1>
+                    Build smarter.<br>
+                    <span>Grow faster.</span>
+                </h1>
+
+                <p>
+                    Bring your shop operations together.
+                    Manage products, monitor inventory,
+                    track sales and discover business insights
+                    with StockWise AI.
+                </p>
+
+                <div class="preview-card">
+
+                    <div class="preview-header">
+                        <div>
+                            <small>YOUR BUSINESS TOOLKIT</small>
+                            <h3>Everything in one place</h3>
+                        </div>
+                        <span class="live-indicator">● STOCKWISE AI</span>
+                    </div>
+
+                    <div class="register-feature-list">
+
+                        <div class="register-feature">
+                            <div class="register-feature-icon">▦</div>
+                            <span>Smart Product & Inventory Management</span>
+                        </div>
+
+                        <div class="register-feature">
+                            <div class="register-feature-icon">↗</div>
+                            <span>Sales Tracking & Business Analytics</span>
+                        </div>
+
+                        <div class="register-feature">
+                            <div class="register-feature-icon">✦</div>
+                            <span>AI-Powered Business Recommendations</span>
+                        </div>
+
+                        <div class="register-feature">
+                            <div class="register-feature-icon">◈</div>
+                            <span>Shop-Specific Data Management</span>
+                        </div>
+
+                    </div>
+
+                    <div class="preview-chart">
+                        <div class="chart-label">
+                            <span>Smarter Business Decisions</span>
+                            <span>AI Powered</span>
+                        </div>
+
+                        <div class="chart-bars">
+                            <i style="height:35%"></i>
+                            <i style="height:55%"></i>
+                            <i style="height:45%"></i>
+                            <i style="height:75%"></i>
+                            <i style="height:65%"></i>
+                            <i style="height:90%"></i>
+                            <i style="height:78%"></i>
+                            <i style="height:100%"></i>
+                        </div>
+                    </div>
+
+                    <p class="preview-disclaimer">
+                        Illustrative preview · Sample visualization
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="login-footer">
+                © 2026 StockWise AI. Smart inventory management.
+            </p>
+
+        </section>
+
+        <!-- RIGHT REGISTRATION SECTION -->
+        <section class="login-form-panel">
+
+            <div class="login-form-wrapper register-form-wrapper">
+
+                <div class="mobile-brand">
+                    <div class="brand-icon">S</div>
+                    <span>StockWise <strong>AI</strong></span>
+                </div>
+
+                <div class="login-heading">
+
+                    <span class="hero-tag">GET STARTED</span>
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Register your shop and start managing
+                        your business smarter.
+                    </p>
+
+                </div>
+
+                <form id="registerForm">
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shopName">Shop Name</label>
+                        <input
+                            type="text"
+                            id="shopName"
+                            placeholder="Enter your shop name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="name@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a password (minimum 6 characters)"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="registerButton"
+                        class="login-submit"
+                    >
+                        Create Account <span>→</span>
+                    </button>
+
+                    <p id="message" class="message"></p>
+
+                </form>
+
+                <div class="login-divider">
+                    <span>ALREADY REGISTERED?</span>
+                </div>
+
+                <p class="login-register">
+                    Already have an account?
+                    <a href="login.html">Sign In</a>
+                </p>
+
+                <p class="login-security">
+                    🔒 Your business data is securely protected.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>

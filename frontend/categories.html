@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+
+        <div class="app-shell">
+
+            <!-- SIDEBAR -->
+            <aside class="app-sidebar">
+
+                <a href="index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">S</span>
+                    <span>StockWise <strong>AI</strong></span>
+                </a>
+
+                <div class="sidebar-label">WORKSPACE</div>
+
+                <nav class="sidebar-nav">
+
+                    <a href="index.html" class="sidebar-link">
+                        <span>▦</span> Dashboard
+                    </a>
+
+                    <a href="products.html" class="sidebar-link">
+                        <span>▤</span> Products
+                    </a>
+
+                    <a href="categories.html" class="sidebar-link active">
+                        <span>◫</span> Categories
+                    </a>
+
+                    <a href="suppliers.html" class="sidebar-link">
+                        <span>♧</span> Suppliers
+                    </a>
+
+                    <a href="stock.html" class="sidebar-link">
+                        <span>⇅</span> Stock Management
+                    </a>
+
+                    <a href="sales.html" class="sidebar-link">
+                        <span>▧</span> Sales
+                    </a>
+
+                </nav>
+
+                <div class="sidebar-label">INTELLIGENCE</div>
+
+                <nav class="sidebar-nav">
+                    <a href="ai.html" class="sidebar-link">
+                        <span>✧</span> AI Assistant
+                    </a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-user-icon">SW</div>
+
+                    <div>
+                        <strong>StockWise AI</strong>
+                        <small>Inventory Workspace</small>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- MAIN AREA -->
+            <div class="app-main">
+
+                <!-- TOPBAR -->
+                <header class="app-topbar">
+
+                    <div>
+                        <span class="topbar-eyebrow">WORKSPACE / ORGANIZATION</span>
+                        <h2>Categories</h2>
+                    </div>
+
+                    <div class="topbar-actions">
+
+                        <span id="welcomeUser" class="welcome-user">
+                            Welcome
+                        </span>
+
+                        <button id="logoutButton" class="logout-btn">
+                            Logout ↗
+                        </button>
+
+                    </div>
+
+                </header>
+
+                <!-- PAGE CONTENT -->
+                <main class="dashboard-content">
+
+                    <!-- PAGE HEADING -->
+                    <section class="dashboard-welcome">
+
+                        <div>
+                            <span class="welcome-tag">PRODUCT ORGANIZATION</span>
+                            <h1>Categories Management</h1>
+                            <p>Organize your products and keep your inventory structured.</p>
+                        </div>
+
+                        <div class="welcome-decoration">◫</div>
+
+                    </section>
+
+                    <!-- ADD CATEGORY -->
+                    <section class="dashboard-section category-form-section">
+
+                        <div class="section-heading">
+
+                            <div>
+                                <h2>Add New Category</h2>
+                                <p>Create a category to organize your shop products.</p>
+                            </div>
+
+                            <span class="section-indicator">+</span>
+
+                        </div>
+
+                        <form id="categoryForm" class="category-form-grid">
+
+                            <div class="form-group">
+
+                                <label for="categoryName">
+                                    Category Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="categoryName"
+                                    placeholder="Example: Electronics"
+                                    maxlength="100"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="categoryDescription">
+                                    Description
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="categoryDescription"
+                                    placeholder="Enter category description"
+                                    maxlength="300"
+                                >
+
+                            </div>
+
+                            <div class="category-form-submit">
+
+                                <button
+                                    type="submit"
+                                    id="addCategoryButton"
+                                    class="profile-save-button"
+                                >
+                                    + Add Category
+                                </button>
+
+                            </div>
+
+                            <p id="categoryMessage" class="message"></p>
+
+                        </form>
+
+                    </section>
+
+                    <!-- ALL CATEGORIES -->
+                    <section class="dashboard-section category-table-section">
+
+                        <div class="section-heading">
+
+                            <div>
+                                <h2>All Categories</h2>
+                                <p>View and manage your product categories.</p>
+                            </div>
+
+                            <span class="section-indicator">◫</span>
+
+                        </div>
+
+                        <div class="table-wrapper category-table-wrapper">
+
+                            <table class="category-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Category Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="categoriesTableBody">
+
+                                    <tr>
+                                        <td colspan="3">
+                                            Loading categories...
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        StockWise AI · Smart Inventory Management
+                    </footer>
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/categories.js"></script>
+
+</body>
+</html>

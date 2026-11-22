@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-dark dashboard-dark">
+
+    <div id="dashboardApp" hidden>
+        <div class="app-shell">
+
+            <aside class="app-sidebar">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-icon">S</div>
+                    <span>StockWise <span class="brand-highlight">AI</span></span>
+                </div>
+
+                <p class="sidebar-label">MAIN MENU</p>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="sidebar-link"><span>▦</span> Dashboard</a>
+                    <a href="products.html" class="sidebar-link"><span>◈</span> Products</a>
+                    <a href="categories.html" class="sidebar-link"><span>▤</span> Categories</a>
+                    <a href="suppliers.html" class="sidebar-link active"><span>♧</span> Suppliers</a>
+                    <a href="stock.html" class="sidebar-link"><span>▣</span> Stock Management</a>
+                    <a href="sales.html" class="sidebar-link"><span>↗</span> Sales</a>
+                    <a href="ai.html" class="sidebar-link"><span>✧</span> AI Assistant</a>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-status"></div>
+                    <span>System Operational</span>
+                </div>
+            </aside>
+
+            <main class="app-main">
+
+                <header class="app-topbar">
+                    <div>
+                        <p class="topbar-eyebrow">INVENTORY MANAGEMENT</p>
+                        <span id="welcomeUser" class="welcome-user">Welcome</span>
+                    </div>
+                    <div class="topbar-actions">
+                        <button id="logoutButton" class="logout-btn">Logout ↗</button>
+                    </div>
+                </header>
+
+                <div class="dashboard-content suppliers-page">
+
+                    <!-- PAGE INTRO -->
+                    <section class="suppliers-hero">
+                        <div class="suppliers-hero-content">
+                            <span class="suppliers-eyebrow">BUSINESS PARTNERS</span>
+                            <h1>Supplier Management</h1>
+                            <p>Build stronger supplier relationships and keep all your vendor information organized.</p>
+                        </div>
+                        <div class="suppliers-hero-icon">♧</div>
+                    </section>
+
+                    <!-- SUPPLIER DIRECTORY -->
+                    <section class="dashboard-section supplier-directory-card">
+
+                        <div class="supplier-section-header">
+                            <div class="supplier-title-group">
+                                <div class="supplier-title-icon">▤</div>
+                                <div>
+                                    <h2>Supplier Directory</h2>
+                                    <p>All your registered suppliers in one place.</p>
+                                </div>
+                            </div>
+                            <span class="supplier-section-tag">SUPPLIER LIST</span>
+                        </div>
+
+                        <div class="supplier-table-wrapper">
+                            <table class="supplier-table">
+                                <thead>
+                                    <tr>
+                                        <th>SUPPLIER</th>
+                                        <th>COMPANY</th>
+                                        <th>PHONE</th>
+                                        <th>EMAIL</th>
+                                        <th>CITY</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="suppliersTableBody">
+                                    <tr>
+                                        <td colspan="6">Loading suppliers...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <!-- ADD SUPPLIER FORM -->
+                    <section class="dashboard-section supplier-create-card">
+
+                        <div class="supplier-section-header">
+                            <div class="supplier-title-group">
+                                <div class="supplier-title-icon supplier-add-icon">+</div>
+                                <div>
+                                    <h2>Add New Supplier</h2>
+                                    <p>Register a new supplier and add their business details.</p>
+                                </div>
+                            </div>
+                            <span class="supplier-section-tag">NEW ENTRY</span>
+                        </div>
+
+                        <form id="supplierForm" class="supplier-modern-form">
+
+                            <div class="supplier-form-block">
+                                <div class="supplier-form-block-heading">
+                                    <span class="supplier-form-number">01</span>
+                                    <div>
+                                        <h3>Contact Information</h3>
+                                        <p>Basic supplier and company details</p>
+                                    </div>
+                                </div>
+
+                                <div class="supplier-fields-grid">
+                                    <div class="form-group">
+                                        <label for="supplierName">Supplier Name <span>*</span></label>
+                                        <input type="text" id="supplierName" placeholder="e.g. Rahul Sharma" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="companyName">Company Name</label>
+                                        <input type="text" id="companyName" placeholder="Enter company name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="supplierEmail">Email Address</label>
+                                        <input type="email" id="supplierEmail" placeholder="name@company.com">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="supplierPhone">Phone Number <span>*</span></label>
+                                        <input type="tel" id="supplierPhone" placeholder="Enter phone number" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="supplier-form-divider"></div>
+
+                            <div class="supplier-form-block">
+                                <div class="supplier-form-block-heading">
+                                    <span class="supplier-form-number">02</span>
+                                    <div>
+                                        <h3>Address Details</h3>
+                                        <p>Supplier's registered business location</p>
+                                    </div>
+                                </div>
+
+                                <div class="supplier-fields-grid">
+                                    <div class="form-group supplier-field-full">
+                                        <label for="street">Street Address</label>
+                                        <input type="text" id="street" placeholder="House number, street or area">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" placeholder="Enter city">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" placeholder="Enter state">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pincode">PIN Code</label>
+                                        <input type="text" id="pincode" placeholder="Enter PIN code">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <input type="text" id="country" value="India" placeholder="Enter country">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="supplier-form-divider"></div>
+
+                            <div class="supplier-form-block">
+                                <div class="supplier-form-block-heading">
+                                    <span class="supplier-form-number">03</span>
+                                    <div>
+                                        <h3>Business Information</h3>
+                                        <p>Tax and registration details</p>
+                                    </div>
+                                </div>
+
+                                <div class="supplier-fields-grid">
+                                    <div class="form-group">
+                                        <label for="gstNumber">GST Number</label>
+                                        <input type="text" id="gstNumber" placeholder="Enter GST number">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="supplier-form-bottom">
+                                <p id="supplierMessage" class="message supplier-message"></p>
+                                <button type="submit" id="addSupplierButton">
+                                    <span>+</span> Add Supplier
+                                </button>
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <footer class="dashboard-footer">
+                        <span>© 2026 StockWise AI</span>
+                        <span>Smart Inventory Management System</span>
+                    </footer>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/suppliers.js"></script>
+
+</body>
+</html>

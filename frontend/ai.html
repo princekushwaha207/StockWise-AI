@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="ai-page">
+
+    <div id="dashboardApp" hidden>
+
+        <header class="topbar">
+            <div class="brand">StockWise AI</div>
+
+            <div class="topbar-right">
+                <span id="welcomeUser">Welcome</span>
+                <button id="logoutButton" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="dashboard-layout">
+
+            <aside class="sidebar">
+                <h3>MAIN MENU</h3>
+                <nav>
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
+                    <a href="suppliers.html" class="nav-link">Suppliers</a>
+                    <a href="stock.html" class="nav-link">Stock Management</a>
+                    <a href="sales.html" class="nav-link">Sales</a>
+                    <a href="ai.html" class="nav-link active">AI Assistant</a>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+
+                <div class="page-heading">
+                    <div>
+                        <h1>AI Assistant</h1>
+                        <p>Your intelligent business and inventory advisor</p>
+                    </div>
+                </div>
+
+                <section class="ai-intro">
+                    <h2>Welcome to StockWise AI</h2>
+                    <p>
+                        Get intelligent insights into your shop's inventory,
+                        sales performance and stock requirements.
+                        Make smarter business decisions with AI.
+                    </p>
+                    <span class="ai-provider">AI Powered Analysis</span>
+                </section>
+
+                <!-- DEAD STOCK AND EXPIRY ALERTS -->
+                <section class="dashboard-section">
+
+                    <h2>Dead Stock & Expiry Alerts</h2>
+
+                    <p class="ai-section-description">
+                        Identify expired products, products nearing expiry
+                        and inventory that has not recorded any sales
+                        in the last 60 days.
+                    </p>
+
+                    <button id="inventoryAlertsButton" class="ai-action-btn">
+                        Analyze Inventory Risks
+                    </button>
+
+                    <div id="inventoryAlertsStatus" class="ai-status"></div>
+
+                    <div id="inventoryAlertsSummary" hidden>
+                        <div class="dashboard-cards">
+
+                            <div class="dashboard-card">
+                                <h3>Expired Products</h3>
+                                <p id="expiredProductsCount">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Expiring Within 7 Days</h3>
+                                <p id="expiring7DaysCount">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Expiring Within 8–15 Days</h3>
+                                <p id="expiring15DaysCount">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Expiring Within 16–30 Days</h3>
+                                <p id="expiring30DaysCount">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Dead Stock Products</h3>
+                                <p id="deadStockCount">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Expiry Risk Value</h3>
+                                <p id="expiryRiskValue">₹0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Dead Stock Value</h3>
+                                <p id="deadStockValue">₹0</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="expiryAlertsResult" class="ai-result" hidden>
+                        <h3>Expiry Risk Products</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Current Stock</th>
+                                        <th>Expiry Date</th>
+                                        <th>Days Remaining</th>
+                                        <th>Risk Value</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expiryAlertsTableBody">
+                                    <tr>
+                                        <td colspan="7">
+                                            Analyze inventory to view expiry alerts.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="deadStockResult" class="ai-result" hidden>
+                        <h3>Dead Stock Analysis</h3>
+
+                        <p class="ai-section-description">
+                            Products with available stock but no recorded
+                            sales during the last 60 days.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Current Stock</th>
+                                        <th>Purchase Price</th>
+                                        <th>Blocked Inventory Value</th>
+                                        <th>Sales (60 Days)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="deadStockTableBody">
+                                    <tr>
+                                        <td colspan="6">
+                                            Analyze inventory to view dead stock.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <p class="ai-section-description">
+                        Inventory values are estimated using purchase prices.
+                        Expiry alerts include products with available stock.
+                    </p>
+
+                </section>
+
+                <!-- AUTO REORDER SUGGESTIONS -->
+                <section class="dashboard-section">
+
+                    <h2>Auto Reorder Suggestions</h2>
+
+                    <p class="ai-section-description">
+                        Automatically identify products that need restocking.
+                        Get suggested order quantities, supplier information,
+                        reorder priority and estimated purchase costs.
+                    </p>
+
+                    <button id="reorderSuggestionsButton" class="ai-action-btn">
+                        Generate Reorder Suggestions
+                    </button>
+
+                    <div id="reorderSuggestionsStatus" class="ai-status"></div>
+
+                    <div id="reorderSummary" hidden>
+                        <div class="dashboard-cards">
+
+                            <div class="dashboard-card">
+                                <h3>Products Checked</h3>
+                                <p id="reorderProductsChecked">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Products to Reorder</h3>
+                                <p id="productsRequiringReorder">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Total Suggested Units</h3>
+                                <p id="totalSuggestedUnits">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Estimated Order Cost</h3>
+                                <p id="estimatedOrderCost">₹0</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="reorderSuggestionsResult" class="ai-result" hidden>
+                        <h3>Recommended Reorder List</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Current Stock</th>
+                                        <th>Minimum Stock</th>
+                                        <th>Suggested Order</th>
+                                        <th>Priority</th>
+                                        <th>Supplier</th>
+                                        <th>Supplier Contact</th>
+                                        <th>Estimated Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reorderSuggestionsTableBody">
+                                    <tr>
+                                        <td colspan="9">
+                                            Generate suggestions to view reorder recommendations.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="ai-section-description">
+                            Suggestions are calculated using recent sales,
+                            current inventory, minimum stock levels and
+                            supplier lead time. These recommendations do
+                            not automatically place purchase orders.
+                        </p>
+                    </div>
+
+                </section>
+
+                <!-- FRAUD AND ANOMALY DETECTION -->
+                <section class="dashboard-section">
+
+                    <h2>Fraud & Anomaly Detection</h2>
+
+                    <p class="ai-section-description">
+                        Monitor stock movements and identify unusual inventory
+                        activities, large stock reductions, suspicious
+                        adjustments and quantity mismatches from the last 30 days.
+                    </p>
+
+                    <button id="anomalyDetectionButton" class="ai-action-btn">
+                        Detect Stock Anomalies
+                    </button>
+
+                    <div id="anomalyDetectionStatus" class="ai-status"></div>
+
+                    <div id="anomalySummary" hidden>
+
+                        <div class="dashboard-cards">
+
+                            <div class="dashboard-card">
+                                <h3>Total Movements Checked</h3>
+                                <p id="anomalyMovementsChecked">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Total Anomalies</h3>
+                                <p id="totalAnomalies">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Critical Alerts</h3>
+                                <p id="criticalAnomalies">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>High Risk Alerts</h3>
+                                <p id="highAnomalies">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Medium Risk Alerts</h3>
+                                <p id="mediumAnomalies">0</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="anomalyDetectionResult" class="ai-result" hidden>
+
+                        <h3>Detected Stock Anomalies</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Activity</th>
+                                        <th>Previous Stock</th>
+                                        <th>Movement Qty</th>
+                                        <th>New Stock</th>
+                                        <th>User</th>
+                                        <th>Severity</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="anomalyTableBody">
+                                    <tr>
+                                        <td colspan="10">
+                                            Run anomaly detection to view results.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="ai-section-description">
+                            These are rule-based anomaly alerts, not proof of fraud.
+                            Review suspicious stock movements before taking action.
+                            Analysis covers the last 30 days and up to 1,000 movements.
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <!-- TOTAL SALES REPORT -->
+                <section class="dashboard-section">
+
+                    <h2>Total Sales Report</h2>
+
+                    <p class="ai-section-description">
+                        Analyze your shop's sales performance for the last
+                        30 days. View total revenue, orders, units sold,
+                        payment methods and top-selling products.
+                    </p>
+
+                    <button id="salesReportButton" class="ai-action-btn">
+                        Generate Sales Report
+                    </button>
+
+                    <div id="salesReportStatus" class="ai-status"></div>
+
+                    <!-- SALES SUMMARY -->
+                    <div id="salesReportSummary" hidden>
+
+                        <div class="dashboard-cards">
+
+                            <div class="dashboard-card">
+                                <h3>Total Revenue</h3>
+                                <p id="salesTotalRevenue">₹0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Total Orders</h3>
+                                <p id="salesTotalOrders">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Total Units Sold</h3>
+                                <p id="salesTotalUnits">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Average Order Value</h3>
+                                <p id="salesAverageOrderValue">₹0</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- SALES ANALYTICS CHARTS -->
+                    <div id="salesChartsResult" class="ai-result sales-charts-section" hidden>
+
+                        <h3>Sales Performance Analytics</h3>
+
+                        <p class="ai-section-description">
+                            Visual analysis of your actual sales transactions
+                            from the last 30 days.
+                        </p>
+
+                        <div class="ai-charts-grid">
+
+                            <div class="ai-chart-card">
+                                <h4>Daily Revenue Trend</h4>
+                                <p>Daily revenue and order performance</p>
+
+                                <div class="ai-chart-container">
+                                    <canvas id="aiDailySalesChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="ai-chart-card">
+                                <h4>Top Selling Products</h4>
+                                <p>Top 5 products by units sold</p>
+
+                                <div class="ai-chart-container">
+                                    <canvas id="aiTopProductsChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="ai-chart-card">
+                                <h4>Payment Method Distribution</h4>
+                                <p>Revenue distribution by payment method</p>
+
+                                <div class="ai-chart-container">
+                                    <canvas id="aiPaymentChart"></canvas>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PAYMENT BREAKDOWN -->
+                    <div id="salesPaymentResult" class="ai-result" hidden>
+
+                        <h3>Payment Method Breakdown</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Payment Method</th>
+                                        <th>Total Orders</th>
+                                        <th>Revenue</th>
+                                        <th>Revenue Share</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="salesPaymentTableBody">
+                                    <tr>
+                                        <td colspan="4">
+                                            Generate report to view payment breakdown.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- DAILY SALES -->
+                    <div id="dailySalesResult" class="ai-result" hidden>
+
+                        <h3>Daily Sales Report</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Orders</th>
+                                        <th>Units Sold</th>
+                                        <th>Revenue</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="dailySalesTableBody">
+                                    <tr>
+                                        <td colspan="4">
+                                            Generate report to view daily sales.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- TOP SELLING PRODUCTS -->
+                    <div id="topSellingProductsResult" class="ai-result" hidden>
+
+                        <h3>Top 5 Selling Products</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Product</th>
+                                        <th>Units Sold</th>
+                                        <th>Total Revenue</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="topSellingProductsTableBody">
+                                    <tr>
+                                        <td colspan="4">
+                                            Generate report to view top-selling products.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <p class="ai-section-description">
+                        This report uses recorded sales transactions from the
+                        last 30 days. Revenue is calculated from actual sales
+                        records. It does not represent net profit.
+                    </p>
+
+                </section>
+
+                <!-- SMART DEMAND FORECASTING -->
+                <section class="dashboard-section">
+                    <h2>Smart Demand Forecasting</h2>
+
+                    <p class="ai-section-description">
+                        Analyze the last 30 days of sales and estimate
+                        product demand for the next 7 and 30 days.
+                        Get intelligent stock and reorder suggestions.
+                    </p>
+
+                    <button id="forecastButton" class="ai-action-btn">
+                        Generate Demand Forecast
+                    </button>
+
+                    <div id="forecastStatus" class="ai-status"></div>
+
+                    <div id="forecastSummary" hidden>
+                        <div class="dashboard-cards">
+                            <div class="dashboard-card">
+                                <h3>Total Products</h3>
+                                <p id="forecastTotalProducts">0</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Products With Sales</h3>
+                                <p id="forecastProductsWithSales">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="forecastResult" class="ai-result" hidden>
+                        <h3>Product Demand Forecast</h3>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Current Stock</th>
+                                        <th>Sold (30 Days)</th>
+                                        <th>Daily Demand</th>
+                                        <th>Next 7 Days</th>
+                                        <th>Next 30 Days</th>
+                                        <th>Stock Days</th>
+                                        <th>Reorder Qty</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="forecastTableBody">
+                                    <tr>
+                                        <td colspan="9">
+                                            Generate forecast to view results.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p class="ai-section-description">
+                            Forecasts are estimates based on the previous
+                            30 days of recorded sales. Products without
+                            recorded sales may have insufficient data
+                            for reliable demand predictions.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- BUSINESS ANALYSIS -->
+                <section class="dashboard-section">
+                    <h2>Generate Business Analysis</h2>
+
+                    <p class="ai-section-description">
+                        Let AI analyze your inventory, sales and restocking requirements.
+                    </p>
+
+                    <button id="analyzeButton" class="ai-action-btn">
+                        Generate AI Analysis
+                    </button>
+
+                    <div id="analysisStatus" class="ai-status"></div>
+                    <div id="analysisResult" class="ai-result" hidden></div>
+                </section>
+
+                <!-- AI CHAT -->
+                <section class="dashboard-section">
+                    <h2>Ask StockWise AI</h2>
+
+                    <p class="ai-section-description">
+                        Ask any question about your shop's inventory or sales.
+                    </p>
+
+                    <textarea
+                        id="aiQuestion"
+                        class="ai-question-box"
+                        rows="4"
+                        placeholder="Example: Which products should I restock first?"
+                    ></textarea>
+
+                    <button
+                        id="askButton"
+                        class="ai-action-btn"
+                        style="margin-top: 15px;"
+                    >
+                        Ask AI
+                    </button>
+
+                    <div id="questionStatus" class="ai-status"></div>
+                    <div id="questionResult" class="ai-result" hidden></div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        Verifying your account...
+    </div>
+
+    <!-- Chart.js must load before ai.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/ai.js"></script>
+
+</body>
+</html>

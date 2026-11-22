@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | StockWise AI</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .preview-chart {
+            min-height: 170px;
+        }
+
+        .chart-bars {
+            height: 85px;
+            display: flex;
+            align-items: end;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .chart-bars i {
+            flex: 1;
+            display: block;
+            min-width: 0;
+            border-radius: 5px 5px 0 0;
+            background: linear-gradient(180deg, #987cff, #3979ef);
+            transition: height 0.8s ease;
+            animation: barAppear 0.8s ease;
+        }
+
+        .chart-months {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #71819d;
+            font-size: 10px;
+        }
+
+        .preview-disclaimer {
+            color: #71819d;
+            font-size: 10px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .live-indicator {
+            color: #a695ff;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes barAppear {
+            from {
+                opacity: 0.3;
+                transform: scaleY(0.3);
+                transform-origin: bottom;
+            }
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-dark">
+
+    <main class="login-layout">
+
+        <!-- LEFT BRANDING SECTION -->
+        <section class="login-brand-panel">
+
+            <div class="login-brand">
+                <div class="brand-icon">S</div>
+                <span>StockWise <strong>AI</strong></span>
+            </div>
+
+            <div class="login-hero">
+
+                <span class="hero-tag">SMART INVENTORY PLATFORM</span>
+
+                <h1>
+                    Manage your business.<br>
+                    <span>Think smarter.</span>
+                </h1>
+
+                <p>
+                    Take control of your inventory, track sales,
+                    and make smarter business decisions with
+                    AI-powered insights.
+                </p>
+
+                <!-- DASHBOARD DEMO -->
+                <div class="preview-card">
+
+                    <div class="preview-header">
+                        <div>
+                            <small>PRODUCT PREVIEW · SAMPLE DATA</small>
+                            <h3>Inventory Dashboard</h3>
+                        </div>
+
+                        <span class="live-indicator">● DEMO PREVIEW</span>
+                    </div>
+
+                    <div class="preview-stats">
+
+                        <div>
+                            <small>Total Products</small>
+                            <h2>1,248</h2>
+                            <span>Sample inventory</span>
+                        </div>
+
+                        <div>
+                            <small>Total Revenue</small>
+                            <h2>₹8.45L</h2>
+                            <span>Sample revenue</span>
+                        </div>
+
+                    </div>
+
+                    <!-- ANIMATED SLIDESHOW GRAPH -->
+                    <div class="preview-chart">
+
+                        <div class="chart-label">
+                            <span id="demoChartTitle">Monthly Sales</span>
+                            <span id="demoChartPeriod">Jan - Aug</span>
+                        </div>
+
+                        <div class="chart-bars" id="demoChartBars">
+                            <i style="height:35%"></i>
+                            <i style="height:55%"></i>
+                            <i style="height:42%"></i>
+                            <i style="height:75%"></i>
+                            <i style="height:60%"></i>
+                            <i style="height:90%"></i>
+                            <i style="height:70%"></i>
+                            <i style="height:100%"></i>
+                        </div>
+
+                        <div class="chart-months" id="demoChartLabels">
+                            <span>Jan</span>
+                            <span>Feb</span>
+                            <span>Mar</span>
+                            <span>Apr</span>
+                            <span>May</span>
+                            <span>Jun</span>
+                            <span>Jul</span>
+                            <span>Aug</span>
+                        </div>
+
+                        <p class="preview-disclaimer">
+                            Illustrative dashboard preview · Sample data only
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="login-footer">
+                © 2026 StockWise AI. Smart inventory management.
+            </p>
+
+        </section>
+
+        <!-- RIGHT LOGIN SECTION -->
+        <section class="login-form-panel">
+
+            <div class="login-form-wrapper">
+
+                <div class="mobile-brand">
+                    <div class="brand-icon">S</div>
+                    <span>StockWise <strong>AI</strong></span>
+                </div>
+
+                <div class="login-heading">
+
+                    <span class="hero-tag">WELCOME BACK</span>
+
+                    <h2>Sign in to your account</h2>
+
+                    <p>
+                        Enter your details to access your dashboard.
+                    </p>
+
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="name@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="login-submit"
+                    >
+                        Sign In <span>→</span>
+                    </button>
+
+                    <p id="message" class="message"></p>
+
+                </form>
+
+                <div class="login-divider">
+                    <span>NEW TO STOCKWISE AI?</span>
+                </div>
+
+                <p class="login-register">
+                    Don't have an account?
+                    <a href="register.html">Create Account</a>
+                </p>
+
+                <p class="login-security">
+                    🔒 Your business data is securely protected.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- EXISTING LOGIN SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login-preview.js"></script>
+    <!-- DEMO SLIDESHOW -->
+    <script>
+        const demoSlides = [
+            {
+                title: "Monthly Sales",
+                period: "Jan - Aug",
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+                values: [35, 55, 42, 75, 60, 90, 70, 100]
+            },
+            {
+                title: "Revenue Growth",
+                period: "8 Month Overview",
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+                values: [25, 40, 35, 60, 55, 75, 85, 100]
+            },
+            {
+                title: "Inventory Movement",
+                period: "Stock Overview",
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+                values: [80, 65, 90, 50, 75, 45, 65, 85]
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function showDemoSlide() {
+
+            const slide = demoSlides[currentSlide];
+
+            const title = document.getElementById("demoChartTitle");
+            const period = document.getElementById("demoChartPeriod");
+            const bars = document.getElementById("demoChartBars");
+            const labels = document.getElementById("demoChartLabels");
+
+            title.textContent = slide.title;
+            period.textContent = slide.period;
+
+            bars.innerHTML = slide.values
+                .map(value => `<i style="height:${value}%"></i>`)
+                .join("");
+
+            labels.innerHTML = slide.labels
+                .map(label => `<span>${label}</span>`)
+                .join("");
+
+            currentSlide = (currentSlide + 1) % demoSlides.length;
+        }
+
+        showDemoSlide();
+
+        setInterval(showDemoSlide, 3000);
+    </script>
+
+</body>
+</html>
