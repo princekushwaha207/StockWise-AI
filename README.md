@@ -212,21 +212,7 @@ This section showcases the main interfaces of StockWise AI.
 
 StockWise AI follows a client-server architecture. The frontend communicates with the backend through API requests. The backend handles business logic, authentication, database operations, and AI service integration.
 
-```mermaid
-flowchart TD
-    A[User] --> B[Frontend Application]
-    B --> C[Express.js Backend]
-    C --> D[API Routes]
-    D --> E[Authentication Middleware]
-    D --> F[Controllers]
-    F --> G[Mongoose Models]
-    G --> H[(MongoDB Atlas)]
-    F --> I[AI Integration]
-    I --> J[Google Gemini API]
-    I --> K[Groq API]
-    F --> C
-    C --> B
-```
+
 
 ### Architecture Components
 
@@ -239,27 +225,9 @@ flowchart TD
 7. **Database:** Stores application information in MongoDB Atlas.
 8. **AI Services:** Connect to Gemini and Groq for supported AI operations.
 
-## Data Flow Diagram
 
-The following diagram illustrates the major data flows between users, application processes, database storage, and AI services.
 
-```mermaid
-flowchart TD
-    A[User] --> B[Login and Registration]
-    B --> C[Authentication]
-    C --> D[Inventory Management]
-    D --> E[Product and Category Data]
-    D --> F[Stock Management]
-    D --> G[Sales Management]
-    E --> H[(MongoDB)]
-    F --> H
-    G --> H
-    H --> I[Dashboard and Reports]
-    D --> J[AI Assistant]
-    J --> K[Gemini and Groq]
-    K --> I
-    I --> A
-```
+    
 
 ## Database Design
 
