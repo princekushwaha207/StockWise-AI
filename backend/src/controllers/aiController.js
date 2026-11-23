@@ -1,7 +1,7 @@
 
 const Product = require("../models/Product");
 const Sale = require("../models/Sale");
-const StockMovement = require("../models/StockMovement");
+const StockMovement = require("../models/stockMovement");
 
 // ==========================================
 // AI CONFIGURATION

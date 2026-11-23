@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Sale = require("../models/Sale");
 const Product = require("../models/Product");
-const StockMovement = require("../models/StockMovement");
+const StockMovement = require("../models/stockMovement");
 
 // CREATE SALE
 const createSale = async (req, res) => {
