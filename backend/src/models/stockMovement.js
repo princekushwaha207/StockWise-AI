@@ -44,9 +44,8 @@ const stockMovementSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const StockMovement = mongoose.model(
-    "StockMovement",
-    stockMovementSchema
-);
+const StockMovement =
+    mongoose.models.StockMovement ||
+    mongoose.model("StockMovement", stockMovementSchema);
 
 module.exports = StockMovement;

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("../models/Product");
-const StockMovement = require("../models/StockMovement");
-
+const StockMovement = require("../models/stockMovement");
 // ADD STOCK (STOCK IN)
 const addStock = async (req, res) => {
     try {

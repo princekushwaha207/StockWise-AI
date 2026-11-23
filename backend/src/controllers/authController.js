@@ -85,6 +85,8 @@ const registerUser = async (req, res) => {
 };
 
 
+
+
 // LOGIN USER
 const loginUser = async (req, res) => {
     try {
@@ -151,6 +153,8 @@ const loginUser = async (req, res) => {
         });
     }
 };
+
+
 
 
 // GET LOGGED-IN USER PROFILE
